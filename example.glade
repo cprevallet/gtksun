@@ -24,219 +24,289 @@
     <property name="can-focus">False</property>
     <property name="title" translatable="yes">Sunrise and Sunset</property>
     <child>
-      <object class="GtkFixed">
+      <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
         <child>
-          <object class="GtkLabel" id="label1">
-            <property name="width-request">-1</property>
-            <property name="height-request">-1</property>
+          <object class="GtkFrame" id="frame1">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="margin-start">5</property>
             <property name="margin-end">5</property>
             <property name="margin-top">5</property>
             <property name="margin-bottom">5</property>
-            <property name="label" translatable="yes">Latitude (degrees)
+            <property name="label-xalign">0</property>
+            <property name="shadow-type">out</property>
+            <child>
+              <object class="GtkFixed">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkCalendar" id="cal">
+                    <property name="width-request">-1</property>
+                    <property name="height-request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="tooltip-text" translatable="yes">Select a date to calculate the values.</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="year">2021</property>
+                    <property name="month">5</property>
+                    <property name="day">3</property>
+                    <signal name="day-selected" handler="_day_selected" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="y">190</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="button1">
+                    <property name="label" translatable="yes">Calculate</property>
+                    <property name="width-request">-1</property>
+                    <property name="height-request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="tooltip-text" translatable="yes">Press to see the results!</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
+                    <signal name="clicked" handler="_on_clicked" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="y">380</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label2">
+                    <property name="width-request">-1</property>
+                    <property name="height-request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="label" translatable="yes">Longitude ( degrees)
 </property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkCalendar" id="cal">
-            <property name="width-request">-1</property>
-            <property name="height-request">-1</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="tooltip-text" translatable="yes">Select a date to calculate the values.</property>
-            <property name="margin-start">5</property>
-            <property name="margin-end">5</property>
-            <property name="margin-top">5</property>
-            <property name="margin-bottom">5</property>
-            <property name="year">2021</property>
-            <property name="month">5</property>
-            <property name="day">3</property>
-            <signal name="day-selected" handler="_day_selected" swapped="no"/>
-          </object>
-          <packing>
-            <property name="y">190</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="button1">
-            <property name="label" translatable="yes">Calculate</property>
-            <property name="width-request">-1</property>
-            <property name="height-request">-1</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Press to see the results!</property>
-            <property name="margin-start">5</property>
-            <property name="margin-end">5</property>
-            <property name="margin-top">5</property>
-            <property name="margin-bottom">5</property>
-            <signal name="clicked" handler="_on_clicked" swapped="no"/>
-          </object>
-          <packing>
-            <property name="y">380</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="label2">
-            <property name="width-request">-1</property>
-            <property name="height-request">-1</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="margin-start">5</property>
-            <property name="margin-end">5</property>
-            <property name="margin-top">5</property>
-            <property name="margin-bottom">5</property>
-            <property name="label" translatable="yes">Longitude ( degrees)
+                  </object>
+                  <packing>
+                    <property name="x">200</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label3">
+                    <property name="width-request">-1</property>
+                    <property name="height-request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="label" translatable="yes">Timezone (for lat/long)</property>
+                  </object>
+                  <packing>
+                    <property name="y">80</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSpinButton" id="sb1">
+                    <property name="width-request">-1</property>
+                    <property name="height-request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="tooltip-text" translatable="yes">N is positive, S is negative</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="shadow-type">none</property>
+                    <property name="input-purpose">number</property>
+                    <property name="adjustment">adjustment1</property>
+                    <property name="climb-rate">0.5</property>
+                    <property name="digits">4</property>
+                    <property name="numeric">True</property>
+                    <property name="wrap">True</property>
+                    <signal name="value-changed" handler="lat_changed" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="y">30</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSpinButton" id="sb2">
+                    <property name="width-request">-1</property>
+                    <property name="height-request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="tooltip-text" translatable="yes">E is positive, W is negative</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="text" translatable="yes">0.0000</property>
+                    <property name="input-purpose">number</property>
+                    <property name="adjustment">adjustment2</property>
+                    <property name="climb-rate">0.5</property>
+                    <property name="digits">4</property>
+                    <property name="numeric">True</property>
+                    <property name="wrap">True</property>
+                    <signal name="value-changed" handler="lon_changed" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="x">200</property>
+                    <property name="y">30</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSpinButton" id="sb3">
+                    <property name="width-request">-1</property>
+                    <property name="height-request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="tooltip-text" translatable="yes">Hours offset from GMT (-12 to 12)</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="text" translatable="yes">0.0000</property>
+                    <property name="input-purpose">number</property>
+                    <property name="adjustment">adjustment3</property>
+                    <property name="climb-rate">1</property>
+                    <property name="numeric">True</property>
+                    <property name="wrap">True</property>
+                    <signal name="value-changed" handler="hours_changed" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="y">110</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label6">
+                    <property name="width-request">-1</property>
+                    <property name="height-request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="label" translatable="yes">Date</property>
+                  </object>
+                  <packing>
+                    <property name="y">160</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label1">
+                    <property name="width-request">-1</property>
+                    <property name="height-request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="label" translatable="yes">Latitude (degrees)
 </property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child type="label">
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">Inputs</property>
+              </object>
+            </child>
           </object>
           <packing>
-            <property name="x">200</property>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="label3">
-            <property name="width-request">-1</property>
-            <property name="height-request">-1</property>
+          <object class="GtkFrame" id="frame2">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="halign">start</property>
+            <property name="margin-left">5</property>
+            <property name="margin-right">5</property>
             <property name="margin-start">5</property>
             <property name="margin-end">5</property>
             <property name="margin-top">5</property>
             <property name="margin-bottom">5</property>
-            <property name="label" translatable="yes">Timezone (for lat/long)</property>
+            <property name="label-xalign">0</property>
+            <property name="shadow-type">out</property>
+            <child>
+              <object class="GtkFixed">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkLabel" id="label4">
+                    <property name="width-request">-1</property>
+                    <property name="height-request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-left">5</property>
+                    <property name="margin-right">5</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label5">
+                    <property name="width-request">-1</property>
+                    <property name="height-request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-left">5</property>
+                    <property name="margin-right">5</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
+                    <attributes>
+                      <attribute name="weight" value="bold"/>
+                    </attributes>
+                  </object>
+                  <packing>
+                    <property name="y">30</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+            <child type="label">
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">Results</property>
+              </object>
+            </child>
           </object>
           <packing>
-            <property name="y">80</property>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
           </packing>
         </child>
         <child>
-          <object class="GtkSpinButton" id="sb1">
-            <property name="width-request">-1</property>
-            <property name="height-request">-1</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="tooltip-text" translatable="yes">N is positive, S is negative</property>
-            <property name="margin-start">5</property>
-            <property name="margin-end">5</property>
-            <property name="margin-top">5</property>
-            <property name="margin-bottom">5</property>
-            <property name="shadow-type">none</property>
-            <property name="input-purpose">number</property>
-            <property name="adjustment">adjustment1</property>
-            <property name="climb-rate">0.5</property>
-            <property name="digits">4</property>
-            <property name="numeric">True</property>
-            <property name="wrap">True</property>
-            <signal name="value-changed" handler="lat_changed" swapped="no"/>
-          </object>
-          <packing>
-            <property name="y">30</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
-          <object class="GtkSpinButton" id="sb2">
-            <property name="width-request">-1</property>
-            <property name="height-request">-1</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="tooltip-text" translatable="yes">E is positive, W is negative</property>
-            <property name="margin-start">5</property>
-            <property name="margin-end">5</property>
-            <property name="margin-top">5</property>
-            <property name="margin-bottom">5</property>
-            <property name="text" translatable="yes">0.0000</property>
-            <property name="input-purpose">number</property>
-            <property name="adjustment">adjustment2</property>
-            <property name="climb-rate">0.5</property>
-            <property name="digits">4</property>
-            <property name="numeric">True</property>
-            <property name="wrap">True</property>
-            <signal name="value-changed" handler="lon_changed" swapped="no"/>
-          </object>
-          <packing>
-            <property name="x">200</property>
-            <property name="y">30</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSpinButton" id="sb3">
-            <property name="width-request">-1</property>
-            <property name="height-request">-1</property>
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="tooltip-text" translatable="yes">Hours offset from GMT (-12 to 12)</property>
-            <property name="margin-start">5</property>
-            <property name="margin-end">5</property>
-            <property name="margin-top">5</property>
-            <property name="margin-bottom">5</property>
-            <property name="text" translatable="yes">0.0000</property>
-            <property name="input-purpose">number</property>
-            <property name="adjustment">adjustment3</property>
-            <property name="climb-rate">1</property>
-            <property name="numeric">True</property>
-            <property name="wrap">True</property>
-            <signal name="value-changed" handler="hours_changed" swapped="no"/>
-          </object>
-          <packing>
-            <property name="y">110</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="label6">
-            <property name="width-request">-1</property>
-            <property name="height-request">-1</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="margin-start">5</property>
-            <property name="margin-end">5</property>
-            <property name="margin-top">5</property>
-            <property name="margin-bottom">5</property>
-            <property name="label" translatable="yes">Date</property>
-          </object>
-          <packing>
-            <property name="y">160</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="label4">
-            <property name="width-request">-1</property>
-            <property name="height-request">-1</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="margin-start">5</property>
-            <property name="margin-end">5</property>
-            <property name="margin-top">5</property>
-            <property name="margin-bottom">5</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="y">440</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="label5">
-            <property name="width-request">-1</property>
-            <property name="height-request">-1</property>
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="margin-start">5</property>
-            <property name="margin-end">5</property>
-            <property name="margin-top">5</property>
-            <property name="margin-bottom">5</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="y">470</property>
-          </packing>
+          <placeholder/>
         </child>
       </object>
     </child>
