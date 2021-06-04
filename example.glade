@@ -22,91 +22,110 @@
   </object>
   <object class="GtkWindow" id="window1">
     <property name="can-focus">False</property>
+    <property name="title" translatable="yes">Sunrise and Sunset</property>
     <child>
       <object class="GtkFixed">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <child>
           <object class="GtkLabel" id="label1">
-            <property name="width-request">173</property>
-            <property name="height-request">80</property>
+            <property name="width-request">-1</property>
+            <property name="height-request">-1</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">Latitude (decimal degrees)
-N is positive
-S is negative</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
+            <property name="label" translatable="yes">Latitude (degrees)
+</property>
           </object>
-          <packing>
-            <property name="x">321</property>
-            <property name="y">44</property>
-          </packing>
         </child>
         <child>
           <object class="GtkCalendar" id="cal">
-            <property name="width-request">225</property>
-            <property name="height-request">172</property>
+            <property name="width-request">-1</property>
+            <property name="height-request">-1</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
+            <property name="tooltip-text" translatable="yes">Select a date to calculate the values.</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
             <property name="year">2021</property>
             <property name="month">5</property>
             <property name="day">3</property>
             <signal name="day-selected" handler="_day_selected" swapped="no"/>
           </object>
           <packing>
-            <property name="x">59</property>
-            <property name="y">380</property>
+            <property name="y">190</property>
           </packing>
         </child>
         <child>
           <object class="GtkButton" id="button1">
             <property name="label" translatable="yes">Calculate</property>
-            <property name="width-request">149</property>
-            <property name="height-request">80</property>
+            <property name="width-request">-1</property>
+            <property name="height-request">-1</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Press to see the results!</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
             <signal name="clicked" handler="_on_clicked" swapped="no"/>
           </object>
           <packing>
-            <property name="x">348</property>
-            <property name="y">374</property>
+            <property name="y">380</property>
           </packing>
         </child>
         <child>
           <object class="GtkLabel" id="label2">
-            <property name="width-request">184</property>
-            <property name="height-request">80</property>
+            <property name="width-request">-1</property>
+            <property name="height-request">-1</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">Longitude (decimal degrees)
-E is positive
-W is negative</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
+            <property name="label" translatable="yes">Longitude ( degrees)
+</property>
           </object>
           <packing>
-            <property name="x">318</property>
-            <property name="y">172</property>
+            <property name="x">200</property>
           </packing>
         </child>
         <child>
           <object class="GtkLabel" id="label3">
-            <property name="width-request">184</property>
-            <property name="height-request">80</property>
+            <property name="width-request">-1</property>
+            <property name="height-request">-1</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="label" translatable="yes">Hours offset from GMT (-12 to 12)</property>
+            <property name="halign">start</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
+            <property name="label" translatable="yes">Timezone (for lat/long)</property>
           </object>
           <packing>
-            <property name="x">312</property>
-            <property name="y">274</property>
+            <property name="y">80</property>
           </packing>
         </child>
         <child>
           <object class="GtkSpinButton" id="sb1">
-            <property name="width-request">162</property>
-            <property name="height-request">80</property>
+            <property name="width-request">-1</property>
+            <property name="height-request">-1</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
-            <property name="margin-right">25</property>
+            <property name="tooltip-text" translatable="yes">N is positive, S is negative</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
+            <property name="shadow-type">none</property>
             <property name="input-purpose">number</property>
             <property name="adjustment">adjustment1</property>
             <property name="climb-rate">0.5</property>
@@ -116,16 +135,20 @@ W is negative</property>
             <signal name="value-changed" handler="lat_changed" swapped="no"/>
           </object>
           <packing>
-            <property name="x">70</property>
-            <property name="y">44</property>
+            <property name="y">30</property>
           </packing>
         </child>
         <child>
           <object class="GtkSpinButton" id="sb2">
-            <property name="width-request">162</property>
-            <property name="height-request">80</property>
+            <property name="width-request">-1</property>
+            <property name="height-request">-1</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
+            <property name="tooltip-text" translatable="yes">E is positive, W is negative</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
             <property name="text" translatable="yes">0.0000</property>
             <property name="input-purpose">number</property>
             <property name="adjustment">adjustment2</property>
@@ -136,16 +159,21 @@ W is negative</property>
             <signal name="value-changed" handler="lon_changed" swapped="no"/>
           </object>
           <packing>
-            <property name="x">66</property>
-            <property name="y">165</property>
+            <property name="x">200</property>
+            <property name="y">30</property>
           </packing>
         </child>
         <child>
           <object class="GtkSpinButton" id="sb3">
-            <property name="width-request">162</property>
-            <property name="height-request">80</property>
+            <property name="width-request">-1</property>
+            <property name="height-request">-1</property>
             <property name="visible">True</property>
             <property name="can-focus">True</property>
+            <property name="tooltip-text" translatable="yes">Hours offset from GMT (-12 to 12)</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
             <property name="text" translatable="yes">0.0000</property>
             <property name="input-purpose">number</property>
             <property name="adjustment">adjustment3</property>
@@ -155,38 +183,59 @@ W is negative</property>
             <signal name="value-changed" handler="hours_changed" swapped="no"/>
           </object>
           <packing>
-            <property name="x">64</property>
-            <property name="y">270</property>
+            <property name="y">110</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label6">
+            <property name="width-request">-1</property>
+            <property name="height-request">-1</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
+            <property name="label" translatable="yes">Date</property>
+          </object>
+          <packing>
+            <property name="y">160</property>
           </packing>
         </child>
         <child>
           <object class="GtkLabel" id="label4">
-            <property name="width-request">200</property>
-            <property name="height-request">30</property>
+            <property name="width-request">-1</property>
+            <property name="height-request">-1</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
             <attributes>
               <attribute name="weight" value="bold"/>
             </attributes>
           </object>
           <packing>
-            <property name="x">58</property>
-            <property name="y">586</property>
+            <property name="y">440</property>
           </packing>
         </child>
         <child>
           <object class="GtkLabel" id="label5">
-            <property name="width-request">200</property>
-            <property name="height-request">30</property>
+            <property name="width-request">-1</property>
+            <property name="height-request">-1</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">5</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">5</property>
             <attributes>
               <attribute name="weight" value="bold"/>
             </attributes>
           </object>
           <packing>
-            <property name="x">58</property>
-            <property name="y">616</property>
+            <property name="y">470</property>
           </packing>
         </child>
       </object>
