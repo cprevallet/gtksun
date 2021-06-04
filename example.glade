@@ -159,6 +159,30 @@ W is negative</property>
             <property name="y">270</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkLabel" id="label4">
+            <property name="width-request">200</property>
+            <property name="height-request">30</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+          </object>
+          <packing>
+            <property name="x">58</property>
+            <property name="y">586</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label5">
+            <property name="width-request">200</property>
+            <property name="height-request">30</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+          </object>
+          <packing>
+            <property name="x">58</property>
+            <property name="y">633</property>
+          </packing>
+        </child>
       </object>
     </child>
   </object>

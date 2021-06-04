@@ -8,7 +8,7 @@ use chrono::{Duration, FixedOffset, TimeZone};
 use core::f64::consts::PI;
 
 
-use gtk::{Builder,Window, Button, SpinButton, Calendar };
+use gtk::{Builder, Window, Button, SpinButton, Calendar, Label};
 
 use std::env::args;
 
@@ -124,6 +124,8 @@ fn build_ui(application: &gtk::Application) {
     let sb3: SpinButton = builder.get_object("sb3").expect("Couldn't get entry");
     let cal: Calendar = builder.get_object("cal").expect("Couldn't get entry");
     let b1: Button = builder.get_object("button1").expect("Couldn't get entry");
+    let lbl4: Label = builder.get_object("label4").expect("Couldn't get entry");
+    let lbl5: Label = builder.get_object("label5").expect("Couldn't get entry");
     
     window.set_application(Some(application));
     window.set_title("Sunrise Calculator");
@@ -137,6 +139,8 @@ fn build_ui(application: &gtk::Application) {
     let sb2_clone = sb2.clone();
     let sb3_clone = sb3.clone();
     let cal_clone = cal.clone();
+    let lbl4_clone = lbl4.clone();
+    let lbl5_clone = lbl5.clone();
     b1.connect_clicked (move |_| {
         let userdate = cal_clone.get_date();
         let (year, month, day) = userdate;  //month is zero based???
@@ -157,8 +161,12 @@ fn build_ui(application: &gtk::Application) {
         let tz = FixedOffset::east((tz_offset.trunc()) as i32 * hour);
         let sunrise_utc = Utc.ymd(y, month, day).and_hms(0, 0, 0) + Duration::minutes(sunrise as i64);
         let sunset_utc = Utc.ymd(y, month, day).and_hms(0, 0, 0) + Duration::minutes(sunset as i64);
-        println!("sunrise_local  = {}", sunrise_utc.with_timezone(&tz).format("%A, %-d %B, %C%y, %r").to_string());
-        println!("sunset_local  = {}", sunset_utc.with_timezone(&tz).format("%A, %-d %B, %C%y, %r").to_string());
+        let msg1 = format!("{}{}", "Sunrise:", sunrise_utc.with_timezone(&tz).format("%A, %-d %B, %C%y, %r").to_string());
+        let msg2 = format!("{}{}", "Sunset:", sunset_utc.with_timezone(&tz).format("%A, %-d %B, %C%y, %r").to_string());
+        //println!("sunrise_local  = {}", sunrise_utc.with_timezone(&tz).format("%A, %-d %B, %C%y, %r").to_string());
+        //println!("sunset_local  = {}", sunset_utc.with_timezone(&tz).format("%A, %-d %B, %C%y, %r").to_string());
+        lbl4_clone.set_text(&msg1);
+        lbl5_clone.set_text(&msg2);
 
     });
     
