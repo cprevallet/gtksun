@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkAdjustment" id="adjustment1">
+    <property name="lower">-180</property>
+    <property name="upper">180</property>
+    <property name="step-increment">0.10</property>
+    <property name="page-increment">1</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment2">
+    <property name="lower">-180</property>
+    <property name="upper">180</property>
+    <property name="step-increment">0.10</property>
+    <property name="page-increment">1</property>
+  </object>
+  <object class="GtkAdjustment" id="adjustment3">
+    <property name="lower">-12</property>
+    <property name="upper">12</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">2</property>
+  </object>
+  <object class="GtkWindow" id="window1">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkFixed">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <child>
+          <object class="GtkLabel" id="label1">
+            <property name="width-request">173</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Latitude (decimal degrees)
+N is positive
+S is negative</property>
+          </object>
+          <packing>
+            <property name="x">321</property>
+            <property name="y">44</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkCalendar" id="cal">
+            <property name="width-request">225</property>
+            <property name="height-request">172</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="year">2021</property>
+            <property name="month">5</property>
+            <property name="day">3</property>
+            <signal name="day-selected" handler="_day_selected" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">59</property>
+            <property name="y">380</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="button1">
+            <property name="label" translatable="yes">Calculate</property>
+            <property name="width-request">149</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <signal name="clicked" handler="_on_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">348</property>
+            <property name="y">374</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label2">
+            <property name="width-request">184</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Longitude (decimal degrees)
+E is positive
+W is negative</property>
+          </object>
+          <packing>
+            <property name="x">318</property>
+            <property name="y">172</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="label3">
+            <property name="width-request">184</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">Hours offset from GMT (-12 to 12)</property>
+          </object>
+          <packing>
+            <property name="x">312</property>
+            <property name="y">274</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSpinButton" id="sb1">
+            <property name="width-request">162</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="margin-right">25</property>
+            <property name="input-purpose">number</property>
+            <property name="adjustment">adjustment1</property>
+            <property name="climb-rate">0.5</property>
+            <property name="digits">4</property>
+            <property name="numeric">True</property>
+            <property name="wrap">True</property>
+            <signal name="value-changed" handler="lat_changed" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">70</property>
+            <property name="y">44</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSpinButton" id="sb2">
+            <property name="width-request">162</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="text" translatable="yes">0.0000</property>
+            <property name="input-purpose">number</property>
+            <property name="adjustment">adjustment2</property>
+            <property name="climb-rate">0.5</property>
+            <property name="digits">4</property>
+            <property name="numeric">True</property>
+            <property name="wrap">True</property>
+            <signal name="value-changed" handler="lon_changed" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">66</property>
+            <property name="y">165</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSpinButton" id="sb3">
+            <property name="width-request">162</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="text" translatable="yes">0.0000</property>
+            <property name="input-purpose">number</property>
+            <property name="adjustment">adjustment3</property>
+            <property name="climb-rate">1</property>
+            <property name="numeric">True</property>
+            <property name="wrap">True</property>
+            <signal name="value-changed" handler="hours_changed" swapped="no"/>
+          </object>
+          <packing>
+            <property name="x">64</property>
+            <property name="y">270</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
