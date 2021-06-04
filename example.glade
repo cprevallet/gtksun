@@ -16,7 +16,7 @@
   </object>
   <object class="GtkAdjustment" id="adjustment3">
     <property name="lower">-12</property>
-    <property name="upper">12</property>
+    <property name="upper">14</property>
     <property name="step-increment">1</property>
     <property name="page-increment">2</property>
   </object>
@@ -48,7 +48,7 @@
                     <property name="height-request">-1</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
-                    <property name="tooltip-text" translatable="yes">Select a date to calculate the values.</property>
+                    <property name="tooltip-text" translatable="yes">Select viewing date.</property>
                     <property name="margin-start">5</property>
                     <property name="margin-end">5</property>
                     <property name="margin-top">5</property>
@@ -64,7 +64,7 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="button1">
-                    <property name="label" translatable="yes">Calculate</property>
+                    <property name="label">gtk-apply</property>
                     <property name="width-request">-1</property>
                     <property name="height-request">-1</property>
                     <property name="visible">True</property>
@@ -75,6 +75,7 @@
                     <property name="margin-end">5</property>
                     <property name="margin-top">5</property>
                     <property name="margin-bottom">5</property>
+                    <property name="use-stock">True</property>
                     <signal name="clicked" handler="_on_clicked" swapped="no"/>
                   </object>
                   <packing>
@@ -109,7 +110,7 @@
                     <property name="margin-end">5</property>
                     <property name="margin-top">5</property>
                     <property name="margin-bottom">5</property>
-                    <property name="label" translatable="yes">Timezone (for lat/long)</property>
+                    <property name="label" translatable="yes">Timezone offset</property>
                   </object>
                   <packing>
                     <property name="y">80</property>
@@ -128,6 +129,7 @@
                     <property name="margin-bottom">5</property>
                     <property name="shadow-type">none</property>
                     <property name="input-purpose">number</property>
+                    <property name="input-hints">GTK_INPUT_HINT_NO_EMOJI | GTK_INPUT_HINT_NONE</property>
                     <property name="adjustment">adjustment1</property>
                     <property name="climb-rate">0.5</property>
                     <property name="digits">4</property>
@@ -152,6 +154,7 @@
                     <property name="margin-bottom">5</property>
                     <property name="text" translatable="yes">0.0000</property>
                     <property name="input-purpose">number</property>
+                    <property name="input-hints">GTK_INPUT_HINT_NO_EMOJI | GTK_INPUT_HINT_NONE</property>
                     <property name="adjustment">adjustment2</property>
                     <property name="climb-rate">0.5</property>
                     <property name="digits">4</property>
@@ -170,13 +173,14 @@
                     <property name="height-request">-1</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
-                    <property name="tooltip-text" translatable="yes">Hours offset from GMT (-12 to 12)</property>
+                    <property name="tooltip-text" translatable="yes">Hours offset from GMT (-12 to +14)</property>
                     <property name="margin-start">5</property>
                     <property name="margin-end">5</property>
                     <property name="margin-top">5</property>
                     <property name="margin-bottom">5</property>
                     <property name="text" translatable="yes">0.0000</property>
                     <property name="input-purpose">number</property>
+                    <property name="input-hints">GTK_INPUT_HINT_NO_EMOJI | GTK_INPUT_HINT_NONE</property>
                     <property name="adjustment">adjustment3</property>
                     <property name="climb-rate">1</property>
                     <property name="numeric">True</property>
@@ -217,13 +221,32 @@
 </property>
                   </object>
                 </child>
+                <child>
+                  <object class="GtkLinkButton" id="linkbutton1">
+                    <property name="label" translatable="yes">Lookup timezone offsets</property>
+                    <property name="width-request">-1</property>
+                    <property name="height-request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="relief">none</property>
+                    <property name="uri">https://en.wikipedia.org/wiki/List_of_UTC_time_offsets</property>
+                  </object>
+                  <packing>
+                    <property name="x">150</property>
+                    <property name="y">80</property>
+                  </packing>
+                </child>
               </object>
             </child>
             <child type="label">
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Inputs</property>
+                <property name="label" translatable="yes">Viewing Location and Date</property>
               </object>
             </child>
           </object>
