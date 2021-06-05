@@ -12,6 +12,18 @@ use gtk::{Builder, Window, Button, SpinButton, Calendar, Label};
 
 use std::env::args;
 
+use maxminddb::geoip2;
+use std::net::{IpAddr};
+
+#[tokio::main]
+async fn get_ip() -> Option<IpAddr> {
+    // Attempt to get an IP address.
+    if let Some(ip) = public_ip::addr().await {
+        Some(ip)
+    } else {
+        None
+    }
+}
 
 /**
  @brief days from 1 january
@@ -124,6 +136,7 @@ fn build_ui(application: &gtk::Application) {
     let sb3: SpinButton = builder.get_object("sb3").expect("Couldn't get entry");
     let cal: Calendar = builder.get_object("cal").expect("Couldn't get entry");
     let b1: Button = builder.get_object("button1").expect("Couldn't get entry");
+    let b2: Button = builder.get_object("button2").expect("Couldn't get entry");
     let lbl4: Label = builder.get_object("label4").expect("Couldn't get entry");
     let lbl5: Label = builder.get_object("label5").expect("Couldn't get entry");
     
@@ -167,6 +180,29 @@ fn build_ui(application: &gtk::Application) {
         //println!("sunset_local  = {}", sunset_utc.with_timezone(&tz).format("%A, %-d %B, %C%y, %r").to_string());
         lbl4_clone.set_text(&msg1);
         lbl5_clone.set_text(&msg2);
+    });
+
+    let sb1a_clone = sb1.clone();
+    let sb2a_clone = sb2.clone();
+    b2.connect_clicked (move |_| {
+        let ip_option = get_ip();
+        if ip_option != None {
+            let ip = ip_option.unwrap();
+            //println!("public ip address: {:?}", ip);
+            let reader = maxminddb::Reader::open_readfile("test-data/GeoLite2-City.mmdb").unwrap();
+            //let ip: IpAddr = FromStr::from_str("24.207.245.44").unwrap();
+            let city: geoip2::City = reader.lookup(ip).unwrap();
+            //let names = city.city.unwrap().names.unwrap();
+            //println!("{:?}", names.get("en").unwrap()); //english, please
+            let location = city.location.unwrap();
+            //println!("{}", location.latitude.unwrap());
+            //println!("{}", location.longitude.unwrap());
+            //println!("{}", location.time_zone.unwrap());
+            //let tz: Tz = location.time_zone.unwrap().parse().unwrap();
+            //println!("{:?}", tz);
+            sb1a_clone.set_value(location.latitude.unwrap());
+            sb2a_clone.set_value(location.longitude.unwrap());
+            }
 
     });
     
