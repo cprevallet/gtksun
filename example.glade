@@ -80,6 +80,7 @@
                     <signal name="clicked" handler="_on_clicked" swapped="no"/>
                   </object>
                   <packing>
+                    <property name="x">280</property>
                     <property name="y">380</property>
                   </packing>
                 </child>
@@ -243,20 +244,19 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="button2">
-                    <property name="label">Use current location</property>
+                    <property name="label">Use current location and timezone</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
+                    <property name="has-focus">True</property>
                     <property name="receives-default">True</property>
-                    <property name="tooltip-text" translatable="yes">Lookup latitude and longitude based on current IP address (requires internet access).</property>
-                    <property name="margin-left">5</property>
-                    <property name="margin-right">5</property>
+                    <property name="tooltip-text" translatable="yes">Lookup latitude and longitude based on current IP address (requires internet access).
+Calculate timezone offset based on local time.</property>
                     <property name="margin-start">5</property>
                     <property name="margin-end">5</property>
                     <property name="margin-top">5</property>
                     <property name="margin-bottom">5</property>
                   </object>
                   <packing>
-                    <property name="x">80</property>
                     <property name="y">380</property>
                   </packing>
                 </child>

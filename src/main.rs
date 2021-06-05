@@ -184,6 +184,7 @@ fn build_ui(application: &gtk::Application) {
 
     let sb1a_clone = sb1.clone();
     let sb2a_clone = sb2.clone();
+    let sb3a_clone = sb3.clone();
     b2.connect_clicked (move |_| {
         let ip_option = get_ip();
         if ip_option != None {
@@ -202,12 +203,15 @@ fn build_ui(application: &gtk::Application) {
             //println!("{:?}", tz);
             sb1a_clone.set_value(location.latitude.unwrap());
             sb2a_clone.set_value(location.longitude.unwrap());
+            let local: Date<Local> = Local::today();
+            let tz = local.offset().local_minus_utc()/3600;
+            sb3a_clone.set_value(tz.into());
             }
-
     });
     
     window.show_all();
 }
+    
 
 fn main() {
     let application = gtk::Application::new(
