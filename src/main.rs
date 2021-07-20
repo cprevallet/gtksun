@@ -7,7 +7,6 @@ use chrono::prelude::*;
 use chrono::{Duration, FixedOffset, TimeZone};
 use core::f64::consts::PI;
 
-
 use gtk::{Builder, Window, Button, SpinButton, Calendar, Label};
 
 use std::env::args;
