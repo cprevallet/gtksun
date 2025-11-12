@@ -10,6 +10,7 @@ use core::f64::consts::PI;
 use gtk::{Builder, Window, Button, SpinButton, Calendar, Label};
 
 use std::env::args;
+use glib::clone;
 
 use maxminddb::geoip2;
 use std::net::{IpAddr};
@@ -128,7 +129,6 @@ fn hdate_get_utc_sun_time_deg (day:i32, month:i32, year:i32, latitude:f64, longi
 
 fn build_ui(application: &gtk::Application) {
     let builder = Builder::from_file("example.glade");
-
     let window: Window = builder.get_object("window1").expect("Couldn't get window");
     let sb1: SpinButton = builder.get_object("sb1").expect("Couldn't get entry");
     let sb2: SpinButton = builder.get_object("sb2").expect("Couldn't get entry");
@@ -147,19 +147,15 @@ fn build_ui(application: &gtk::Application) {
             Inhibit(true)
         });
 */
-    let sb1_clone = sb1.clone();
-    let sb2_clone = sb2.clone();
-    let sb3_clone = sb3.clone();
-    let cal_clone = cal.clone();
-    let lbl4_clone = lbl4.clone();
-    let lbl5_clone = lbl5.clone();
-    b1.connect_clicked (move |_| {
-        let userdate = cal_clone.get_date();
+    b1.connect_clicked (
+        clone!(
+            @strong sb1, @strong sb2, @strong sb3, @strong cal, @strong lbl4, @strong lbl5 => move |_| {
+      let userdate = cal.get_date();
         let (year, month, day) = userdate;  //month is zero based???
         let month = month + 1;
-        let latitude = sb1_clone.get_value();
-        let longitude = sb2_clone.get_value();
-        let tz_offset = sb3_clone.get_value();
+        let latitude = sb1.get_value();
+        let longitude = sb2.get_value();
+        let tz_offset = sb3.get_value();
         let (sunrise, sunset) = hdate_get_utc_sun_time_deg (
             day as i32,
             month as i32,
@@ -177,14 +173,13 @@ fn build_ui(application: &gtk::Application) {
         let msg2 = format!("{}{}", "Sunset:", sunset_utc.with_timezone(&tz).format("%A, %-d %B, %C%y, %r").to_string());
         //println!("sunrise_local  = {}", sunrise_utc.with_timezone(&tz).format("%A, %-d %B, %C%y, %r").to_string());
         //println!("sunset_local  = {}", sunset_utc.with_timezone(&tz).format("%A, %-d %B, %C%y, %r").to_string());
-        lbl4_clone.set_text(&msg1);
-        lbl5_clone.set_text(&msg2);
-    });
+        lbl4.set_text(&msg1);
+        lbl5.set_text(&msg2);
+    }));
 
-    let sb1a_clone = sb1.clone();
-    let sb2a_clone = sb2.clone();
-    let sb3a_clone = sb3.clone();
-    b2.connect_clicked (move |_| {
+    b2.connect_clicked (
+        clone!(
+            @strong sb1, @strong sb2, @strong sb3 => move |_| {
         let ip_option = get_ip();
         if ip_option != None {
             let ip = ip_option.unwrap();
@@ -200,13 +195,13 @@ fn build_ui(application: &gtk::Application) {
             //println!("{}", location.time_zone.unwrap());
             //let tz: Tz = location.time_zone.unwrap().parse().unwrap();
             //println!("{:?}", tz);
-            sb1a_clone.set_value(location.latitude.unwrap());
-            sb2a_clone.set_value(location.longitude.unwrap());
+            sb1.set_value(location.latitude.unwrap());
+            sb2.set_value(location.longitude.unwrap());
             let local: Date<Local> = Local::today();
             let tz = local.offset().local_minus_utc()/3600;
-            sb3a_clone.set_value(tz.into());
+            sb3.set_value(tz.into());
             }
-    });
+    }));
     
     window.show_all();
 }
@@ -225,5 +220,3 @@ fn main() {
 
     application.run(&args().collect::<Vec<_>>());
 }
-
-
